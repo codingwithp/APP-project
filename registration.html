@@ -1,69 +1,118 @@
-reg.html
 <!DOCTYPE html>
-<!---Coding By CodingLab | www.codinglabweb.com--->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="reg.css" />
-  </head>
-  <body>
-    <section class="container">
-      <header>Registration Form</header>
-      <form action="#" class="form">
-        <div class="input-box">
-          <label>Full Name</label>
-          <input type="text" placeholder="Enter full name" required />
-        </div>
-        <div class="input-box">
-            <label>USN</label>
-            <input type="alphanumeric" placeholder="Enter USN" required />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="reg.css" />
+  <title>Registration Form</title>
+</head>
+<body>
+  <section class="container">
+    <header>Registration Form</header>
+    <form id="form" class="form" name="submit-to-google-sheet" method="POST" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbwixwwRiuHnacfuxZu_gSwAPpK2iayn9c3h2ygh_WDOE7HVj-v433ZjkRGw6VzUfcNy/exec">
+      <div class="input-box">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter full name" name="fullName" required />
+      </div>
+      <div class="input-box">
+        <label>USN</label>
+        <input type="text" placeholder="Enter USN" name="usn" required />
+      </div>
+      <div class="input-box">
+        <label>Email ID</label>
+        <input type="email" placeholder="Enter college mail ID" name="email" required />
+      </div>
+      <div class="gender-box">
+        <h3>Gender</h3>
+        <div class="gender-option">
+          <div class="gender">
+            <input type="radio" id="check-male" name="gender" value="male" checked />
+            <label for="check-male">Male</label>
           </div>
-        <div class="input-box">
-          <label>Email ID</label>
-          <input type="text" placeholder="Enter college mail ID" required />
-        </div>
-        <div class="gender-box">
-          <h3>Gender</h3>
-          <div class="gender-option">
-            <div class="gender">
-              <input type="radio" id="check-male" name="gender" checked />
-              <label for="check-male">male</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-female" name="gender" />
-              <label for="check-female">Female</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-other" name="gender" />
-              <label for="check-other">prefer not to say</label>
-            </div>
+          <div class="gender">
+            <input type="radio" id="check-female" name="gender" value="female" />
+            <label for="check-female">Female</label>
+          </div>
+          <div class="gender">
+            <input type="radio" id="check-other" name="gender" value="prefer not to say" />
+            <label for="check-other">Prefer not to say</label>
           </div>
         </div>
-        <div class="input-box address">
-          <label>Department</label>
-          <div class="column">
-            <div class="select-box">
-              <select>
-                <option hidden>Enter Department</option>
-                <option>Computer Science and Engineering</option>
-                <option>Information Science and Engineering</option>
-                <option>Artificial Intelligence</option>
-                <option>Biotechnology</option>
-                <option>Civil Engineering</option>
-                <option>Mechanical Engineering</option>
-                <option>Data Science</option>
-              </select>
-            </div>
-          </div> 
+      </div>
+      <div class="input-box">
+        <label>Department</label>
+        <div class="column">
+          <div class="select-box">
+            <select name="department" required>
+              <option hidden>Enter Department</option>
+              <option>Computer Science and Engineering</option>
+              <option>Information Science and Engineering</option>
+              <option>Artificial Intelligence</option>
+              <option>Biotechnology</option>
+              <option>Civil Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Data Science</option>
+            </select>
+          </div>
         </div>
-        <div class="input-box">
-          <label>Upload Photo</label>
-          <input type="file" />
-        </div>
-        <button><a href="home.html">Submit</a></button>
-      </form>
-    </section>
-  </body>
+      </div>
+      <div class="input-box">
+        <label>Upload Photo</label>
+        <input type="file" name="photo" id="photo" onchange="FileOnChange(this)" required />
+        <img id="ImgPreview" style="width: 100px; height: 100px; display:none;" />
+        <input type="hidden" id="ImgData" name="ImgData" />
+      </div>
+      <button type="submit" id="submitBtn">Submit</button>
+      <br />
+      <span id="success"></span>
+    </form>
+    
+    <script>
+      function FileOnChange(p) {
+        var file = p.files[0];
+        var ImgSrc = URL.createObjectURL(file);
+        document.getElementById("ImgPreview").src = ImgSrc;
+        document.getElementById("ImgPreview").style.display = "block"; // Show image preview
+
+        let imgRead = new FileReader();
+
+        imgRead.onload = function(e) {
+          var AllData = e.target.result;
+          var ImgData = AllData.split("base64,")[1];
+          document.getElementById("ImgData").value = ImgData;
+        }
+
+        imgRead.readAsDataURL(file);
+      }
+
+      const form = document.getElementById('form'); 
+      const submitBtn = document.getElementById('submitBtn');
+      
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
+        submitBtn.innerHTML = "Submitting..."; 
+
+        const formData = new FormData(form); 
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+        })
+        .then((res) => res.text()) 
+        .then((response) => {
+          submitBtn.innerHTML = "Submit"; 
+          document.getElementById("success").innerText = "Form submitted successfully!"; 
+          console.log(response); 
+          form.reset(); 
+        })
+        .catch((error) => {
+          submitBtn.innerHTML = "Submit"; 
+          document.getElementById("success").innerText = "Error submitting the form. Please try again."; 
+          console.error("Error:", error); 
+        });
+      });
+    </script>
+  </section>
+</body>
 </html>
