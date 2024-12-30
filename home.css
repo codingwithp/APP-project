@@ -1,0 +1,104 @@
+home.css
+/* Reset styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color:grey;
+    color: #333;
+   
+}
+  
+  /* Layout styles */
+  .dashboard {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    width: 250px;
+    background-color: #5849D0;;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar ul li i {
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+  
+  .sidebar ul li:hover {
+    background-color: #514eb6;
+  }
+  
+  .sidebar ul li.active {
+    background-color: #514eb6;
+    font-weight: bold;
+  }
+  
+  /* Main content styles */
+  .main-content {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+    background-color: whitesmoke;
+    background-image: url('image\ copy.png');
+
+  }
+  
+  .main-content h1 {
+    font-size: 2em;
+    color:#514eb6;
+  }
+.main-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+    max-width: 800px; /* Optional, to center content better */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .main-buttons button {
+    background-color: #6c63ff; /* Matches the sidebar */
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(30% - 20px); /* Ensures 3 buttons per row */
+    max-width: calc(33% - 20px); /* Constrains each button */
+    text-align: center;
+    height: 150px;
+    
+  }
+  
+  .main-buttons button:hover {
+    background-color: #514eb6; /* Slightly darker purple for hover */
+    transform: translateY(-5px); /* Adds lift effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
