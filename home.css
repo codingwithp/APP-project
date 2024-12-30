@@ -102,3 +102,7 @@ body {
     transform: translateY(-5px); /* Adds lift effect */
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   }
+  a{
+    color: white;
+    text-decoration: none;
+  }
