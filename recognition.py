@@ -1,3 +1,4 @@
+# 
 import os
 import pickle
 import face_recognition
@@ -13,14 +14,14 @@ from PIL import Image
 
 # Authenticate and build the service for Google Sheets API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-SERVICE_ACCOUNT_FILE = 'path_to_your_service_account_json_file.json'  # Update with your file
+SERVICE_ACCOUNT_FILE = r'C:\Users\praga\OneDrive\Desktop\python\service.json'  # Use raw string to avoid escape issues
 
 credentials = Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 service = build('sheets', 'v4', credentials=credentials)
 
 # Replace with your Google Sheet ID
-SPREADSHEET_ID = 'your_spreadsheet_id'  # Update with your Google Sheet ID
+SPREADSHEET_ID = '1_hawYifDoyZ2HhjY2qaipCo3rNSdYkrgfzlMOMRRpas'  # Update with your Google Sheet ID
 RANGE_NAME = 'Sheet1!A:F'  # Ensure this range includes Name, USN, Email, Gender, Department, Photo URL
 
 # Call the Sheets API to get the data
@@ -122,4 +123,4 @@ while True:
 # Release resources
 video_capture.release()
 cv2.destroyAllWindows()
-f.close()
+f.close() 

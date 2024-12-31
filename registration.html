@@ -10,7 +10,7 @@
 <body>
   <section class="container">
     <header>Registration Form</header>
-    <form id="form" class="form" name="submit-to-google-sheet" method="POST" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbyOU1v4hdIo4Xcr2odo-xSiNodRR5ItO8g_7NJSdGxVJjr4VVsVBLh6VDSgZkQmXg0D/exec">
+    <form id="form" class="form" name="submit-to-google-sheet" method="POST" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbwwObjHbglW-cDCsqpUDjuY-K9CNwXuIIjyLn393RKxnuV0fHSmoasPPWM-K8fDKtbx/exec">
       <div class="input-box">
         <label>Full Name</label>
         <input type="text" placeholder="Enter full name" name="fullName" required />
@@ -74,28 +74,28 @@
         var ImgSrc = URL.createObjectURL(file);
         document.getElementById("ImgPreview").src = ImgSrc;
         document.getElementById("ImgPreview").style.display = "block"; // Show image preview
-
+    
         let imgRead = new FileReader();
-
+    
         imgRead.onload = function(e) {
           var AllData = e.target.result;
-          var ImgData = AllData.split("base64,")[1];
-          document.getElementById("ImgData").value = ImgData;
+          var ImgData = AllData.split("base64,")[1];  // Extract base64 image data
+          document.getElementById("ImgData").value = ImgData;  // Store the base64 image data in a hidden input field
         }
-
+    
         imgRead.readAsDataURL(file);
       }
-
-      const form = document.getElementById('form'); 
+    
+      const form = document.getElementById('form');
       const submitBtn = document.getElementById('submitBtn');
       
       form.addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent default form submission behavior
         submitBtn.innerHTML = "Submitting..."; 
-
-        const formData = new FormData(form); 
-        
-        fetch(form.action, {
+    
+        const formData = new FormData(form);  // Prepare the form data to send
+    
+        fetch(form.action, {  // Send the form data via a POST request to the Apps Script URL
           method: 'POST',
           body: formData,
         })
@@ -104,7 +104,7 @@
           submitBtn.innerHTML = "Submit"; 
           document.getElementById("success").innerText = "Form submitted successfully!"; 
           console.log(response); 
-          form.reset(); 
+          form.reset();  // Reset the form after successful submission
         })
         .catch((error) => {
           submitBtn.innerHTML = "Submit"; 
@@ -113,6 +113,7 @@
         });
       });
     </script>
+    
   </section>
 </body>
 </html>
