@@ -1,4 +1,3 @@
-# 
 import os
 import pickle
 import face_recognition
@@ -37,6 +36,7 @@ else:
     student_data = {}
 
     # Fetch data from the sheet
+    # Fetch data from the sheet
     for row in values:
         if len(row) >= 6:  # Ensure there are enough columns
             name = row[0]
@@ -45,23 +45,30 @@ else:
             gender = row[3]
             department = row[4]
             photo_url = row[5]
-            
-            # Download the image from the URL
+
+        # Skip empty or invalid photo URLs
+            if not photo_url or not photo_url.startswith("https://"):
+                continue  # Skip processing this row
+
+        # Download the image from the URL
             try:
                 response = requests.get(photo_url)
+                response.raise_for_status()  # Raise error for bad responses
                 img_data = BytesIO(response.content)
-                img = Image.open(img_data)
+                img = Image.open(img_data).convert("RGB")  # Ensure RGB format
                 img = np.array(img)
-                img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                
-                # Get the encoding for the image
+                img_rgb = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)  # Convert to BGR for OpenCV
+
+            # Get the encoding for the image
                 encoding = face_recognition.face_encodings(img_rgb)
                 if encoding:
                     known_face_encodings.append(encoding[0])
                     known_face_names.append(name)
                     student_data[name] = {'usn': usn, 'email': email, 'gender': gender, 'department': department}
-            except Exception as e:
-                print(f"Error loading image for {name}: {e}")
+            except Exception:
+            # Handle any errors silently to avoid terminal clutter
+                continue
+
 
 # Initialize webcam for face recognition
 video_capture = cv2.VideoCapture(0)
@@ -123,4 +130,4 @@ while True:
 # Release resources
 video_capture.release()
 cv2.destroyAllWindows()
-f.close() 
+f.close()
