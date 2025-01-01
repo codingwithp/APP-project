@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSV Data Viewer</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -115,15 +116,40 @@
       font-size: 16px;
       color: #666;
     }
+    /* Style for Back Button */
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-button:hover {
+  background-color: #333;
+}
+
   </style>
 </head>
 <body>
+  <a href="home.html" class="back-button"><i class="fa-solid fa-arrow-left"></i></a>
   <header>
-    CSV Data Viewer
+    Attendance details
   </header>
   <main>
     <h1>Upload CSV File</h1>
-    <p>Select a CSV file to display its data in a well-formatted table:</p>
+    <p>Select a CSV file to display attendance data</p>
     <input type="file" id="csvFileInput" accept=".csv">
     
     <table id="csvTable">
