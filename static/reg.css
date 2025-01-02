@@ -16,7 +16,7 @@ body {
   justify-content: center;
   padding: 20px;
   background:  #907ad6;
-  background-image: url('registration-bg.webp');
+  background-image: url('/static/registration-bg.webp');
 }
 
 .container {

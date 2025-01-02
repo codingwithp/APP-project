@@ -13,18 +13,18 @@
       <h2>Dashboard</h2>
       <nav>
         <ul>
-          <li><i class="fa-solid fa-user"></i><a href="registration.html"> Student Registration</a></li>
+          <li><i class="fa-solid fa-user"></i><a href="{{ url_for('registration') }}"> Student Registration</a></li>
           <li><i class="fa-solid fa-pen"></i><a href="javascript:void(0);" id="mark-attendance"> Mark Attendance</a></li>
-          <li><i class="fa-solid fa-circle-info"></i><a href="table.html"> Attendance Details</a></li>
+          <li><i class="fa-solid fa-circle-info"></i><a href="{{ url_for('table') }}"> Attendance Details</a></li>
         </ul>
       </nav>
     </aside>
     <main class="main-content">
       <h1>Facial Recognition Attendance System</h1>
       <div class="main-buttons">
-        <a href="registration.html"><button><i class="fa-solid fa-user"></i> Student Registration</button></a>
+        <a href="{{ url_for('registration') }}"><button><i class="fa-solid fa-user"></i> Student Registration</button></a>
         <button id="mark"><i class="fa-solid fa-pen"></i> Mark Attendance</button>
-        <a href="table.html"><button><i class="fa-solid fa-circle-info"></i> Attendance Details</button></a>
+        <a href="{{ url_for('table') }}"><button><i class="fa-solid fa-circle-info"></i> Attendance Details</button></a>
       </div>
       <div id="webcam-container" style="display:none;">
         <video id="video" width="640" height="480" autoplay></video>

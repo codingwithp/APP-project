@@ -61,7 +61,7 @@ body {
     padding: 40px;
     text-align: center;
     background-color: whitesmoke;
-    background-image: url('image\ copy.png');
+    background-image: url('/static/image\ copy.png');
     font-family: "Lato", sans-serif;
 
   }
