@@ -83,13 +83,29 @@
       font-size: 16px;
     }
 
-    th:nth-child(1) {
-      background-color: #394991; /* Green */
+    th:nth-child(5) {
+      background-color: #5e548e; /* Green */
       color: white;
     }
 
+    th:nth-child(4) {
+      background-color: #5e548e; /* Orange */
+      color: white;
+    }
     th:nth-child(2) {
-      background-color: #5b3974; /* Orange */
+      background-color: #5e548e; /* Orange */
+      color: white;
+    }
+    th:nth-child(3) {
+      background-color: #5e548e; /* Orange */
+      color: white;
+    }
+    th:nth-child(1) {
+      background-color: #5e548e; /* Orange */
+      color: white;
+    }
+    th:nth-child(6) {
+      background-color: #5e548e; /* Orange */
       color: white;
     }
 
@@ -188,7 +204,7 @@
 
       if (data.length > 0) {
         // Add fixed headers (Name, Date)
-        const headers = ["Name", "Date"];
+        const headers = ["Name", "USN", "Email", "Gender", "Department", "Date"];
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
 
