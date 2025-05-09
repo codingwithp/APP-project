@@ -13,7 +13,7 @@ from PIL import Image
 
 # Authenticate and build the service for Google Sheets API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-SERVICE_ACCOUNT_FILE = r'C:\Users\praga\OneDrive\Desktop\python\service.json'  # Use raw string to avoid escape issues
+SERVICE_ACCOUNT_FILE = r'C:\Users\praga\OneDrive\Desktop\python\ss.json'  # Use raw string to avoid escape issues
 
 credentials = Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
