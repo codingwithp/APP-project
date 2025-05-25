@@ -1,27 +1,25 @@
-# Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
-# Install system dependencies for dlib (CMake, build tools, boost)
 RUN apt-get update && apt-get install -y \
     cmake \
     build-essential \
     libboost-all-dev \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy requirements.txt to container
 COPY requirements.txt .
 
-# Install Python dependencies including dlib
 RUN pip install --no-cache-dir -r requirements.txt
+COPY service.json /app/service.json
 
-# Copy the rest of your app's source code
+
 COPY . .
 
-# Expose port (if your app uses a port, change or remove this)
+ENV FLASK_RUN_HOST=0.0.0.0
+
 EXPOSE 8000
 
-# Command to run your app (change as needed)
 CMD ["python", "app.py"]

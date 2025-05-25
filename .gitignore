@@ -9,7 +9,7 @@ venv/
 # Service account and sensitive credential files
 ss.json
 em.json
-*.json
+
 
 # Logs and attendance files
 *.log
