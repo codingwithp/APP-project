@@ -14,3 +14,6 @@ em.json
 # Logs and attendance files
 *.log
 *.csv
+
+# Allow requirements.txt even if others ignore *.txt
+!requirements.txt
