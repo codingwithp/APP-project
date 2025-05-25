@@ -15,6 +15,8 @@ def home():
 
 # Route for Student Registration
 @app.route('/registration')
+
+
 def registration():
     return render_template('registration.html')
 
