@@ -13,9 +13,9 @@ from PIL import Image
 
 # Authenticate and build the service for Google Sheets API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-# SERVICE_ACCOUNT_FILE = r'C:\Users\praga\OneDrive\Desktop\python\service.json'  
+SERVICE_ACCOUNT_FILE = r'C:\Users\praga\OneDrive\Desktop\python\service.json'  
 # # Use raw string to avoid escape issues
-SERVICE_ACCOUNT_FILE = '/app/service.json'  # ✅ Linux path inside Docker
+# SERVICE_ACCOUNT_FILE = '/app/service.json'  # ✅ Linux path inside Docker
 
 
 credentials = Credentials.from_service_account_file(
